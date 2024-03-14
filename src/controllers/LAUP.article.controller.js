@@ -15,7 +15,7 @@ export const postArticleLAUP = async (req, res) => {
     }
 }
 
-export const getArticlesLAUP = async (req, res) => {
+export const putArticlesLAUP = async (req, res) => {
     try {
         const article = Article.findByIdAndUpdate(req.params.id, estado="inactivo")
 
