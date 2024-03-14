@@ -9,5 +9,5 @@ export function createToken(client){
         exp: moment().add(1, 'day').unix(),
     }
 
-    return jwt.encode(payload, token.SECRET_TOKEN)
+    return jwt.encode(payload, SECRET_TOKEN)
 }

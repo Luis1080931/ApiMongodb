@@ -6,7 +6,7 @@ export const getClientsLAUP = async (req, res) => {
             cliente: req.params.id
         }).populate('cliente')
         
-        if(client.lenght>0){
+        if(client.length>0){
             res.status(200).json(client)
         }else{
             res.status(404).json({Message: 'No hay clientes registrados'})
