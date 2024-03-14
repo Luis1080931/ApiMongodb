@@ -16,7 +16,10 @@ export const postInteresLAUP = async (req, res) => {
 
 export const deleteInteresLAUP = async (req, res) => {
     try {
-        const interes = await Interes.findByIdAndUpdate(req.params.id, estado="pagado");
+        const interes = await Interes.findById(req.params.id);
+
+        interes.estado = "pagado";
+        await interes.save()
 
         if(interes){
             res.status(200).json({Message: 'Se pago el interes'})

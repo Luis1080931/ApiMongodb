@@ -5,20 +5,27 @@ import { SECRET_TOKEN } from "../config.js";
 
 export const validarCliente = async (req, res) => {
     try {
-        const { identificacion, contraseña } = req.body;
-        const usuario = await Usuario.findOne({ identificacion, contraseña });
+        const { identificacion, password } = req.body;
+        const usuario = await Usuario.findOne({ identificacion, password });
 
         if (!usuario) {
             return res.status(404).json({ message: "Usuario no encontrado" });
         }
 
-        if (contraseña !== usuario.contraseña) {
+        if (password !== usuario.password) {
             return res.status(401).json({ message: "Contraseña incorrecta" });
         }
 
-        const token = jwt.sign({ id: usuario._id }, SECRET_TOKEN);
+        if( identificacion == usuario.identificacion && password == usuario.password ){
+            const token = jwt.sign({ id: usuario._id }, SECRET_TOKEN);
 
-        return res.status(200).json({ identificacion: usuario.identificacion, token, message: 'Token generado con éxito' });
+            return res.status(200).json({ identificacion: usuario.identificacion, token, message: 'Token generado con éxito' });
+        }else{
+            res.status(404).json({ Message: 'Not found' })
+        }
+        
+
+        
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: "Error del servidor"+ error });

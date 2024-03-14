@@ -17,7 +17,10 @@ export const postArticleLAUP = async (req, res) => {
 
 export const putArticlesLAUP = async (req, res) => {
     try {
-        const article = Article.findByIdAndUpdate(req.params.id, estado="inactivo")
+        const article = await Article.findById(req.params.id)
+
+        article.estado="inactivo"
+        await article.save()
 
         if(article){
             res.status(200).json({ Message: 'Articulo desactivado' })
