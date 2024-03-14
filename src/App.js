@@ -22,6 +22,15 @@ app.use('/interes', rutaInteres)
 app.use('/usuarios', rutaUser)
 app.use(rutaValidacion)
 
+app.set('view engine', 'ejs')
+app.set('views', './views')
+
+app.use(express.static('./public'))
+
+app.get('/document', (req, res) => {
+    res.render('document.ejs')
+})
+
 dbconnect();
 
 export default app

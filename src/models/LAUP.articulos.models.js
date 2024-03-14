@@ -6,8 +6,14 @@ const articulosSchema = new mongoose.Schema(
             type: String,
             required: true
         },
+        tipo: {
+            type: String,
+            enum: ["Vehiculo", "Oro", "Electrodomesticos", "Maquinaria", "Herramienta"],
+            required: true
+        },
         estado: {
             type: String,
+            enum: ["activo", "inactivo"],
             required: true
         }
     }

@@ -21,7 +21,7 @@ export const postClientLAUP = async (req, res) => {
         if(client){
             res.status(200).json({Status: 200, Message: 'Cliente registrado con exito'})
         }else{
-            res.status(403).json({Status: 403, Message: 'No se registro el usuario'})
+            res.status(403).json({Status: 403, Message: 'No se registro el cliente'})
         }
     } catch (error) {
         res.status(500).json({Message: 'Error del servidor' + error})
@@ -53,6 +53,6 @@ export const deleteClientLAUP = async (req, res) => {
             res.status(404).json({Message: 'Cliente no encontrado'})
         }
     } catch (error) {
-        
+        res.status(500).json({ Message: 'Error del servidor' + error })
     }
 }

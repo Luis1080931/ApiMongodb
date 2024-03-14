@@ -16,12 +16,12 @@ export const postInteresLAUP = async (req, res) => {
 
 export const deleteInteresLAUP = async (req, res) => {
     try {
-        const interes = await Interes.findByIdAndDelete(req.params.id)
+        const interes = await Interes.findByIdAndUpdate(req.params.id, estado="pagado");
 
         if(interes){
-            res.status(200).json({Message: 'Se elimino el interes'})
+            res.status(200).json({Message: 'Se pago el interes'})
         }else{
-            res.status(404).json({Message: 'Interes no eliminado'})
+            res.status(404).json({Message: 'Interes no fue pagado'})
         }
     } catch (error) {
         res.status(500).json({Message: 'Error del servidor' + error})

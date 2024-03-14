@@ -6,7 +6,7 @@ const interesSchema = mongoose.Schema({
         required: true
     },
     fecha: {
-        type: Date,
+        type: Date, 
         required: true
     },
     valor: {
@@ -18,6 +18,11 @@ const interesSchema = mongoose.Schema({
     alquiler: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Alquiler'
+    },
+    estado: {
+        type: String,
+        enum: ["pagado", "no Pagado"],
+        required: true
     }
 })
 

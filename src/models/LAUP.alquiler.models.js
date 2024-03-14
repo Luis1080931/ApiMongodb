@@ -23,11 +23,13 @@ const alquilerSchema = new mongoose.Schema({
     },
     cliente: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Cliente'
+        ref: 'Cliente',
+        required: true
     },
     articulo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Article'
+        ref: 'Article',
+        required: true
     }
 })
 
