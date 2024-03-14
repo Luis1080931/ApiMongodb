@@ -7,6 +7,7 @@ import rutaArticle from './routes/LAUP.route.article.js'
 import rutaAlquiler from './routes/LAUP.alquiler.route.js'
 import rutaInteres from './routes/LAUP.interes.route.js'
 import rutaUser from './routes/LAUP.user.route.js'
+import rutaConsultas from './routes/LAUP.consultas.route.js'
 import { dbconnect } from './config.js'
 
 const app = express()
@@ -21,6 +22,7 @@ app.use('/alquiler', rutaAlquiler)
 app.use('/interes', rutaInteres)
 app.use('/usuarios', rutaUser)
 app.use(rutaValidacion)
+app.use(rutaConsultas)
 
 app.set('view engine', 'ejs')
 app.set('views', './views')
