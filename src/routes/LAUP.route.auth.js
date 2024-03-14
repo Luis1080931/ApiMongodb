@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { validarToken } from "../controllers/LAUP.auth.js";
+import { validarCliente} from "../controllers/LAUP.auth.js";
 
 const rutaValidacion = Router()
 
-rutaValidacion.post('/validacion', validarToken)
+rutaValidacion.post('/validacion', validarCliente)
 
 export default rutaValidacion

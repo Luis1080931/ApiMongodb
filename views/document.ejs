@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <h1>Documentacion api mongo </h1>
+
+    <h2> Modulo Usuarios </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 1 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Registrar usuarios </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /usuarios/registrar </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite registrar usuarios </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Post </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> Null </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "identificacion": 1080931,
+                    "password": "hola12"
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'User registrado'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Usuario no registrado'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2> Requerimiento inicio de sesión </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 2 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Inicio de sesión </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /validacion </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite validar un usuario </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Post </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> Null </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "identificacion": 1080931,
+                    "password": "hola123"
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta Json </td>
+            <td>
+                Correcto: 
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Token generado con exito',
+                    identificacion: 1080931,
+                    token: "token"
+                },
+
+                Incorrecto: 
+                Status: 400,
+                Json: 
+                {
+                    Message: 'Usuario no encontrado o Contraseña incorrecta'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor'+ error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2> Modulo clientes </h2>
+    <hr>
+    <h2> Requerimiento registrar clientes </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 3 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Registrar clientes </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /clients/registrar </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite registrar clientes </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Post </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "identificacion": 1080931,
+                    "nombres": "Luis",
+                    "direccion": "Vereda",
+                    "telefono": "315405",
+                    "fecha_nac": "2005-12-20"
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Cliente registrado con exito'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'No se registro el cliente'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2> Requerimiento listar clientes </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 4 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Listar clientes </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /clients/listar </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite listar todos los clientes </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Get </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td> Null </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    "identificacion": 1080931,
+                    "nombres": "Luis",
+                    "direccion": "Vereda",
+                    "telefono": "315405",
+                    "fecha_nac": "2005-12-20"
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'No hay clientes registrados'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2> Requerimiento actualizar clientes </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 5 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Actualizar clientes </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /clients/actualizar/1080931 </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite actualizar clientes </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Put </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "identificacion": 1080931,
+                    "nombres": "Luis",
+                    "direccion": "Vereda",
+                    "telefono": "315405",
+                    "fecha_nac": "2005-12-20"
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Actualizado con exito'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Cliente no encontrado'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2> Requerimiento eliminar clientes </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 6 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Eliminar clientes </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /clients/eliminar/1080931 </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite eliminar clientes </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Delete </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td> Null </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Cliente eliminado con exito'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Cliente no encontrado'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    
+    <h2> Modulo articulos </h2>
+    <hr>
+    <h2> Requerimiento registrar articulos </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 7 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Registrar articulos </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /articles/registrar </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite registrar articulos </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Post </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "nombre": "Carro",
+                    "tipo": "Vehiculo",
+                    "estado": "activo",
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Articulo creado'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Error al crear el articulo'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <h2> Requerimiento desactivar articulo </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 8 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Desactivar articulos </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /articles/desactivar/1</td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite desactivar articulos </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Put </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td> Null </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Articulo desactivado'
+                },
+
+                Incorrecto:
+                Status: 404,
+                Json: 
+                {
+                    Message: 'Not found'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2> Modulo alquiler </h2>
+
+    <hr>
+
+    <h2> Requerimiento registrar alquiler </h2>
+    
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 9 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Registrar alquiler </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /alquiler/registrar </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite registrar alquiler </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Post </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "valor": "1.000.000",
+                    "fecha": "2024-12-20",
+                    "meses": 2,
+                    "descripcion": "Prestamo",
+                    "intereses": "2",
+                    "cliene": "objectid",
+                    "articulo": "objectid"
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Alquiler registrado'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'No se registro el alquiler'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2> Requerimiento actualizar alquiler </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 10 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Actualizar alquiler </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /alquiler/actualizar/1 </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite actualizar alquiler </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Put </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "valor": "1.000.000",
+                    "fecha": "2024-12-20",
+                    "meses": 6,
+                    "descripcion": "Prestamo",
+                    "intereses": "2",
+                    "cliene": "objectid",
+                    "articulo": "objectid"
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Alquiler actualizado'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Not found'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2> Modulo intereses </h2>
+    <hr>
+    <h2> Requerimiento registrar interes </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 11 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Registrar interes </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /interes/registrar </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite registrar intereses </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Post </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>
+                Json: 
+                {
+                    "mes": 2,
+                    "fecha": "2024-12-20",
+                    "valor": "1.000.000",
+                    "alquiler": "objectid",
+                }
+            </td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Interes registrado'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Interes no fue registrado'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+
+    <hr>
+    <h2> Requerimiento actualizar interes </h2>
+
+    <table>
+        <tr>
+            <td> Numero </td>
+            <td> 12 </td>
+        </tr>
+        <tr>
+            <td> Nombre del servicio </td>
+            <td> Desactivar interes </td>
+        </tr>
+        <tr>
+            <td> URL </td>
+            <td> /interes/desactivar/1 </td>
+        </tr>
+        <tr>
+            <td> Descripción </td>
+            <td> Permite desactivar intereses </td>
+        </tr>
+        <tr>
+            <td> Verbo HTTP </td>
+            <td> Put </td>
+        </tr>
+        <tr>
+            <td> Header </td>
+            <td> token: token </td>
+        </tr>
+        <tr>
+            <td> Usuario </td>
+            <td> Administrador </td>
+        </tr>
+        <tr>
+            <td> Peticion json </td>
+            <td>Null</td>
+        </tr>
+        <tr>
+            <td> Respuesta json </td>
+            <td>
+                Correcto:
+                Status: 200,
+                Json: 
+                {
+                    Message: 'Se pago el interes'
+                },
+
+                Incorrecto:
+                Status: 403,
+                Json: 
+                {
+                    Message: 'Interes no fue pagado'
+                },
+
+                Error:
+                Status: 500,
+                Json: 
+                {
+                    Message: 'Error del servidor' + error
+                }
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

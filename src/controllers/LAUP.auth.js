@@ -1,24 +1,41 @@
-import mongoose from "mongoose";
-import Cliente from '../models/LAUP.clientes.models.js'
-import { createToken } from "../services/token.js";
+import  jwt from "jsonwebtoken"
+import Usuario from "../models/LAUP.usuarios.models.js";
+import { SECRET_TOKEN } from "../config.js";
 
-export const validarToken = async (req, res) => {
+
+export const validarCliente = async (req, res) => {
     try {
-        // Simplemente como ejemplo, verifica las credenciales en la base de datos
-        const client = await Cliente.findOne({ identificacion: req.body.identificacion});
-    
-        if (!user) {
-          return res.status(401).json({ error: 'Identificacion inválida' });
+        const { identificacion, contraseña } = req.body;
+        const usuario = await Usuario.findOne({ identificacion, contraseña });
+
+        if (!usuario) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
         }
-    
-        // Crea un token JWT con la información del usuario
-        const token = jwt.sign({ clientId: client._id, identificacion: client.identificacion },createToken());
-    
-        // Devuelve el token como respuesta
-        res.json({ token });
-      } catch (error) {
+
+        if (contraseña !== usuario.contraseña) {
+            return res.status(401).json({ message: "Contraseña incorrecta" });
+        }
+
+        const token = jwt.sign({ id: usuario._id }, SECRET_TOKEN);
+
+        return res.status(200).json({ identificacion: usuario.identificacion, token, message: 'Token generado con éxito' });
+    } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error interno del servidor' });
-      }
-    };
-    
+        return res.status(500).json({ message: "Error del servidor"+ error });
+    }
+};
+export const validarToken = (req, res, next) => {
+    const token = req.headers['token'];
+
+    if (!token) {
+        return res.status(404).send({ message: "token es requerido" });
+    } else {
+        jwt.verify(token, SECRET_TOKEN, (error, decoded) => {
+            if (error) {
+                return res.status(404).json({ 'message': 'token incorrecto' });
+            } else {
+                next();
+            }
+        });
+    }
+}
