@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { interesePagadosLAUP, interesesPendientesLAUP, interesesRecaudadosLAUP } from "../controllers/LAUP.consultas.controller.js";
+import { interesesPagadosLAUP, interesesPendientesLAUP, interesesRecaudadosLAUP } from "../controllers/LAUP.consultas.controller.js";
 
 const rutaConsultas = Router()
 
-rutaConsultas.get('/interesPagos', interesePagadosLAUP)
+rutaConsultas.get('/interesPagos/:id', interesesPagadosLAUP)
 rutaConsultas.get('/interesPendientes/:id', interesesPendientesLAUP)
 rutaConsultas.get('/interesRecaudados', interesesRecaudadosLAUP)
 

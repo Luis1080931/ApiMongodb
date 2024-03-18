@@ -3,7 +3,7 @@ import Alquiler from "../models/LAUP.alquiler.models.js";
 import Interes from "../models/LAUP.interes.models.js";
 import Article from "../models/LAUP.articulos.models.js";
 
-export const interesePagadosLAUP = async (req, res) => {
+/* export const interesePagadosLAUP = async (req, res) => {
     try {
         const clients = await Clientes.find().populate('nombres').lean()
         const alquiler = await Alquiler.find().populate('valor').lean()
@@ -28,7 +28,39 @@ export const interesePagadosLAUP = async (req, res) => {
         res.status(500).json({ Message: 'Error del servidor' + error })
     }
     
-}
+} */
+
+export const interesesPagadosLAUP = async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const cliente = await Clientes.findById(id, 'nombres');
+
+        if (!cliente) {
+            res.status(404).json({ mensaje: 'Cliente no encontrado' });
+        }
+
+        const alquileres = await Alquiler.find({ cliente: id }, 'valor meses articulo');
+
+        let interesesPagados = [];
+
+        for (const alquiler of alquileres) {
+            const intereses = await Interes.find({ alquiler: alquiler._id, estado: 'pagado' }, 'mes valor');
+
+            interesesPagados = interesesPagados.concat(intereses);
+        }
+
+        if (interesesPagados.length === 0) {
+            res.json({ mensaje: 'Este cliente no ha pagado intereses' });
+        }
+
+        res.json({ cliente: cliente.nombres, alquiler: alquileres, intereses: interesesPagados });
+    } catch (error) {
+
+        res.status(500).json({ mensaje: 'Error del servidor' + error });
+    }
+};
 
 export const interesesPendientesLAUP = async (req, res) => {
     try {
