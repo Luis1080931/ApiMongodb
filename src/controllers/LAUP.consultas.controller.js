@@ -1,34 +1,6 @@
 import Clientes from "../models/LAUP.clientes.models.js";
 import Alquiler from "../models/LAUP.alquiler.models.js";
 import Interes from "../models/LAUP.interes.models.js";
-import Article from "../models/LAUP.articulos.models.js";
-
-/* export const interesePagadosLAUP = async (req, res) => {
-    try {
-        const clients = await Clientes.find().populate('nombres').lean()
-        const alquiler = await Alquiler.find().populate('valor').lean()
-        const interes = await Interes.find({ estado: {$eq: "pagado"} }).populate('mes', 'valor').lean()
-        const articles = await Article.find().populate('nombre').lean()
-
-        const combinacion = {
-            clients,
-            alquiler,
-            interes,
-            articles
-        }
-
-        if(combinacion){
-            res.status(200).json(combinacion)
-        }else{
-            res.status(404).json({ Message: 'Not found' })
-        }
-
-        
-    } catch (error) {
-        res.status(500).json({ Message: 'Error del servidor' + error })
-    }
-    
-} */
 
 export const interesesPagadosLAUP = async (req, res) => {
     try {
